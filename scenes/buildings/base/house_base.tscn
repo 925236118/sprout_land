@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://7h4l58aagrdb"]
+
+[ext_resource type="TileSet" uid="uid://br4s331soec4a" path="res://resources/tileset/buildings.tres" id="1_qhtle"]
+[ext_resource type="Script" path="res://scenes/buildings/base/house_base.gd" id="2_c72cx"]
+
+[node name="BuildingsMap" type="TileMap"]
+tile_set = ExtResource("1_qhtle")
+format = 2
+layer_0/name = "Floor"
+layer_1/name = "Wall"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Furniture"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Tile"
+layer_3/z_index = 999
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("2_c72cx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
