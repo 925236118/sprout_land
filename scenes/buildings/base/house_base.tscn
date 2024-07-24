@@ -4,12 +4,15 @@
 [ext_resource type="Script" path="res://scenes/buildings/base/house_base.gd" id="2_c72cx"]
 
 [node name="BuildingsMap" type="TileMap"]
+y_sort_enabled = true
 tile_set = ExtResource("1_qhtle")
 format = 2
 layer_0/name = "Floor"
 layer_1/name = "Wall"
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Furniture"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Tile"
 layer_3/z_index = 999

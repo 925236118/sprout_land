@@ -7,4 +7,6 @@ var tool_state_name: Dictionary = {
 	"item": "Item"
 }
 
+var is_using_tool: bool = false
+
 var current_tool: String = "hoe"

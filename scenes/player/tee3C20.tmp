@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/StateMachine/StateMachine.gd" id="3_miw2v"]
 [ext_resource type="Script" path="res://scenes/player/player_idle.gd" id="4_smo4t"]
 [ext_resource type="Script" path="res://scenes/player/player_walk.gd" id="5_75rv2"]
-[ext_resource type="Script" path="res://scenes/player/player_use_tool.gd" id="6_747kk"]
+[ext_resource type="Script" path="res://scenes/player/UseTool.gd" id="6_q5s3c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pna0a"]
 
@@ -1561,8 +1561,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-16, 38)
 
 [node name="Teemo" type="CharacterBody2D"]
-z_index = 1
-y_sort_enabled = true
+z_index = 10
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_o4diu")
@@ -1576,7 +1575,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 384, 48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_l6vt6")
 
@@ -1610,5 +1608,5 @@ script = ExtResource("5_75rv2")
 player = NodePath("../..")
 
 [node name="UseTool" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("6_747kk")
+script = ExtResource("6_q5s3c")
 player = NodePath("../..")

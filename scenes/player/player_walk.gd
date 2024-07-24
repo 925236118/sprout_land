@@ -9,7 +9,9 @@ func enter():
 	
 func physical_process_update(delta: float):
 	super.physical_process_update(delta)
-	if player.direction.length() == 0:
+	if Input.is_action_just_pressed("tool"):
+		state_machine.change_state("UseTool")
+	elif player.direction.length() == 0:
 		state_machine.change_state("Idle")
 	move()
 	
