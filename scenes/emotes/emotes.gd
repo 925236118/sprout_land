@@ -9,8 +9,9 @@ var animationNames: Array[String] = [
 ]
 
 func random_play():
-	var random_animation = animationNames.pick_random()
-	animation_player.play(random_animation)
+	pass
+	#var random_animation = animationNames.pick_random()
+	#animation_player.play(random_animation)
 	
-	await animation_player.animation_finished
-	animation_finished.emit()
+	#await animation_player.animation_finished
+	#animation_finished.emit()
