@@ -14,32 +14,33 @@
 polygon = PackedVector2Array(-4, -14, -4, 0, 4, 0, 4, -14)
 
 [node name="Game" type="Node2D"]
-y_sort_enabled = true
 script = ExtResource("1_trp3w")
 
-[node name="Maps" type="Node2D" parent="."]
+[node name="Houses" type="Node2D" parent="."]
+
+[node name="TeemoHome" parent="Houses" instance=ExtResource("3_0mbbp")]
+position = Vector2(208, 34)
+
+[node name="WareHouse" parent="Houses" instance=ExtResource("4_kvlhp")]
+position = Vector2(246, 135)
+
+[node name="YSortMaps" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="PlantMap" parent="Maps" instance=ExtResource("5_m0ld7")]
+[node name="PlantMap" parent="YSortMaps" instance=ExtResource("5_m0ld7")]
 
-[node name="TeemoHome" parent="Maps" instance=ExtResource("3_0mbbp")]
-position = Vector2(320, 80)
-
-[node name="WareHouse" parent="Maps" instance=ExtResource("4_kvlhp")]
-position = Vector2(410, 80)
-
-[node name="Teemo" parent="." instance=ExtResource("1_j12b4")]
+[node name="Teemo" parent="YSortMaps" instance=ExtResource("1_j12b4")]
 material = SubResource("ShaderMaterial_77pfc")
-position = Vector2(138, 119)
+position = Vector2(96, 115)
 collision_mask = 13
 
-[node name="Camera2D" type="Camera2D" parent="Teemo"]
+[node name="Camera2D" type="Camera2D" parent="YSortMaps/Teemo"]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Teemo"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="YSortMaps/Teemo"]
 visible = false
 occluder = SubResource("OccluderPolygon2D_tfcut")
 

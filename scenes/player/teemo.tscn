@@ -10,7 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pna0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vt6"]
-size = Vector2(8, 9)
+size = Vector2(8, 6)
 
 [sub_resource type="Animation" id="Animation_ge0ex"]
 length = 0.001
@@ -1575,7 +1575,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 384, 48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4.5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_l6vt6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

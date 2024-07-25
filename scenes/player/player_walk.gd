@@ -18,3 +18,6 @@ func physical_process_update(delta: float):
 func move():
 	player.velocity = player.direction * speed
 	player.move_and_slide()
+
+func exit():
+	super.exit()

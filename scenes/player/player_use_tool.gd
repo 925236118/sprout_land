@@ -22,23 +22,29 @@ func enter() -> void:
 			await get_tree().create_timer(0.5).timeout
 			var dig_pos = player.global_position + player.last_direction * 12
 			GlobalPlants.dig_earth.emit(dig_pos)
+		"kettle":
+			await get_tree().create_timer(0.5).timeout
+			var water_pos = player.global_position + player.last_direction * 12
+			GlobalPlants.water_earth.emit(water_pos)
 		"seed":
 			var plant_pos = player.global_position
 			GlobalPlants.plant_plant.emit(plant_pos)
+			GlobalTool.is_using_tool = false
+			state_machine.change_state("Idle")
 		_:
 			pass
 
 ## 退出状态
 func exit() -> void:
-	pass
+	super.exit()
 
 ## 渲染帧触发
-func process_update(delta: float) -> void:
+func process_update(_delta: float) -> void:
 	# 动画播放结束后退出当前模式
 	if use_tool_machine.get_current_node() == "End":
 		GlobalTool.is_using_tool = false
 		state_machine.change_state("Idle")
 
 ## 物理帧触发
-func physical_process_update(delta: float) -> void:
+func physical_process_update(_delta: float) -> void:
 	pass

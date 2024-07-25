@@ -6,7 +6,6 @@ class_name Player
 @onready var animation_tree = $AnimationTree
 @onready var machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
-
 var direction = Vector2.ZERO
 # 最后一帧面朝的方向
 var last_direction: Vector2 = Vector2.ZERO
@@ -14,7 +13,7 @@ var last_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if GlobalTool.is_using_tool:
 		return
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

@@ -14,3 +14,6 @@ func physical_process_update(delta: float):
 		state_machine.change_state("UseTool")
 	if player.direction.length() != 0:
 		state_machine.change_state("Walk")
+
+func exit():
+	super.exit()

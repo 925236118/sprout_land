@@ -23,11 +23,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsMap/Area2D"]
 
 [node name="FurnitureMap" type="TileMap" parent="."]
-y_sort_enabled = true
 tile_set = ExtResource("1_qhtle")
 format = 2
 layer_0/name = "Furniture"
-layer_0/y_sort_enabled = true
 
 [connection signal="body_entered" from="BuildingsMap/Area2D" to="BuildingsMap" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="BuildingsMap/Area2D" to="BuildingsMap" method="_on_area_2d_body_exited"]
