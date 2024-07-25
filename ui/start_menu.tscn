@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnvf55ey1f2n6"]
+[gd_scene load_steps=8 format=3 uid="uid://cnvf55ey1f2n6"]
 
 [ext_resource type="Script" path="res://ui/start_menu.gd" id="1_ci27t"]
 [ext_resource type="Texture2D" uid="uid://vf35is406qy5" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/Square Buttons 26x19.png" id="1_u4vq4"]
+[ext_resource type="Texture2D" uid="uid://cbo12hy3iow2x" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="2_rbmsc"]
+[ext_resource type="Texture2D" uid="uid://rvavfnsyqj5g" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Emotes/Teemo premium emote animations sprite sheet-export.png" id="3_6v4ep"]
+[ext_resource type="FontFile" uid="uid://cx3ks20lah17g" path="res://assets/Sprout Lands - UI Pack - Premium pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_o4noa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ydpc"]
+atlas = ExtResource("3_6v4ep")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2uwl"]
 
@@ -14,27 +21,88 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ci27t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Background" type="Control" parent="BackgroundContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BackgroundContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(6, 0)
+texture = ExtResource("2_rbmsc")
+region_rect = Rect2(587, 12, 58.3295, 57)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 17
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundContainer/MarginContainer"]
+custom_minimum_size = Vector2(169, 169)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_3ydpc")
+
+[node name="TitleContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 200
+
+[node name="GameTitle" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_o4noa")
+theme_override_font_sizes/font_size = 100
+text = "Sprout Land"
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 29)
+[node name="NewGame" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(200, 58)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxEmpty_b2uwl")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Button"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuContainer/NewGame"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +116,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Label" type="Label" parent="VBoxContainer/Button"]
+[node name="Label" type="Label" parent="MenuContainer/NewGame"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,6 +129,82 @@ offset_right = 44.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start Game"
+theme_override_font_sizes/font_size = 30
+text = "New Game"
+horizontal_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Continue" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(200, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b2uwl")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuContainer/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u4vq4")
+region_rect = Rect2(59, 40, 26, 17)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuContainer/Continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+horizontal_alignment = 1
+
+[node name="Option" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(200, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b2uwl")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuContainer/Option"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u4vq4")
+region_rect = Rect2(59, 40, 26, 17)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuContainer/Option"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Option"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MenuContainer/NewGame" to="." method="_on_new_game_pressed"]
