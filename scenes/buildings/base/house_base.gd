@@ -1,11 +1,18 @@
-extends TileMap
+@tool
+
+class_name BuildingMap extends TileMap
 @export_range(0.1, 1.0) var min_tile_alpha: float = 0.1
+@export var hide_tile: bool = false:
+	set(val):
+		hide_tile = val
+		if Engine.is_editor_hint():
+			set_layer_enabled(tile_layer, !val)
 
 const tile_layer_name = "Tile"
 var tile_layer: int
-var hide_tile = false
 var layer_alpha = 1.0
 var alpha_delta = 2.5
+
 
 func _init() -> void:
 	for i in get_layers_count():

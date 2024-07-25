@@ -28,6 +28,11 @@ text = "Axe"
 layout_mode = 2
 text = "Kettle"
 
+[node name="Seed" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Seed"
+
 [connection signal="pressed" from="HBoxContainer/Hoe" to="." method="_on_hoe_pressed"]
 [connection signal="pressed" from="HBoxContainer/Axe" to="." method="_on_axe_pressed"]
 [connection signal="pressed" from="HBoxContainer/Kettle" to="." method="_on_kettle_pressed"]
+[connection signal="pressed" from="HBoxContainer/Seed" to="." method="_on_seed_pressed"]

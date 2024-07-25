@@ -3,27 +3,31 @@
 [ext_resource type="TileSet" uid="uid://br4s331soec4a" path="res://resources/tileset/buildings.tres" id="1_qhtle"]
 [ext_resource type="Script" path="res://scenes/buildings/base/house_base.gd" id="2_c72cx"]
 
-[node name="BuildingsMap" type="TileMap"]
-y_sort_enabled = true
+[node name="Building" type="Node2D"]
+
+[node name="BuildingsMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_qhtle")
 format = 2
 layer_0/name = "Floor"
 layer_1/name = "Wall"
 layer_1/tile_data = PackedInt32Array()
-layer_2/name = "Furniture"
-layer_2/y_sort_enabled = true
-layer_2/z_index = 1
+layer_2/name = "Tile"
+layer_2/z_index = 999
 layer_2/tile_data = PackedInt32Array()
-layer_3/name = "Tile"
-layer_3/z_index = 999
-layer_3/tile_data = PackedInt32Array()
 script = ExtResource("2_c72cx")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="BuildingsMap"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsMap/Area2D"]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="FurnitureMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_qhtle")
+format = 2
+layer_0/name = "Furniture"
+layer_0/y_sort_enabled = true
+
+[connection signal="body_entered" from="BuildingsMap/Area2D" to="BuildingsMap" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="BuildingsMap/Area2D" to="BuildingsMap" method="_on_area_2d_body_exited"]

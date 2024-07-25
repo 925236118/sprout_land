@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalTool="*res://globals/global_tool.gd"
+GlobalPlants="*res://globals/global_plants.gd"
 
 [editor_plugins]
 

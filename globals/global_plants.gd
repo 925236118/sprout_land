@@ -1,3 +1,6 @@
 extends Node
 
-signal dig_earth(player_pos: Vector2, direction: Vector2i)
+signal dig_earth(pos: Vector2)
+signal plant_plant(pos: Vector2)
+
+var current_plant = ""
