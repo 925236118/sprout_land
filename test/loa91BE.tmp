@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhpb1pv5x80hx"]
+
+[ext_resource type="Script" path="res://test/loader_test.gd" id="1_11lme"]
+
+[node name="LoaderTest" type="Node2D"]
+script = ExtResource("1_11lme")
+
+[node name="SaveGame" type="Button" parent="."]
+offset_left = 94.0
+offset_top = 76.0
+offset_right = 184.0
+offset_bottom = 107.0
+text = "SaveGame"
+
+[node name="LoadGame" type="Button" parent="."]
+offset_left = 198.0
+offset_top = 76.0
+offset_right = 290.0
+offset_bottom = 107.0
+text = "LoadGame"
+
+[connection signal="pressed" from="SaveGame" to="." method="_on_save_game_pressed"]
+[connection signal="pressed" from="LoadGame" to="." method="_on_load_game_pressed"]

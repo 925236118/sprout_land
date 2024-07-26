@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0iob8ovtriuc"]
 
 [ext_resource type="PackedScene" uid="uid://hkm61jnlxti8" path="res://scenes/player/teemo.tscn" id="1_j12b4"]
-[ext_resource type="Script" path="res://scenes/game.gd" id="1_trp3w"]
+[ext_resource type="Script" path="res://scenes/farm.gd" id="1_trp3w"]
 [ext_resource type="PackedScene" uid="uid://bmb1047uqu2cj" path="res://scenes/buildings/teemo_home.tscn" id="3_0mbbp"]
 [ext_resource type="PackedScene" uid="uid://c4ngyj8l8oen3" path="res://scenes/buildings/ware_house.tscn" id="4_kvlhp"]
 [ext_resource type="PackedScene" uid="uid://dkpe6sldik3s1" path="res://scenes/plant_map.tscn" id="5_m0ld7"]
-[ext_resource type="PackedScene" uid="uid://bvatbre8e3he4" path="res://ui/game_ui.tscn" id="7_vwn4h"]
+[ext_resource type="PackedScene" uid="uid://bvatbre8e3he4" path="res://ui/GameUI/game_ui.tscn" id="7_vwn4h"]
 [ext_resource type="Texture2D" uid="uid://bh8v7765me6er" path="res://assets/textures/circle.png" id="8_r1i4d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77pfc"]

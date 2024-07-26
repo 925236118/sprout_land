@@ -44,42 +44,36 @@ func random_play():
 		#print("laugh")
 		laugh()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.2:
 		#print("embarrass")
 		embarrass()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.3:
 		#print("happy_jump")
 		happy_jump()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.4:
 		#print("cool")
 		cool()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.5:
 		#print("cool_with_shine")
 		cool_with_shine()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.6:
 		#print("cool_with_smile")
 		cool_with_smile()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		random_play_finished.emit()
 		pass
 	elif random < 0.7:
@@ -96,13 +90,11 @@ func random_play():
 		#print("deep_sleep_with_bubble")
 		deep_sleep_with_bubble()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 2.0)).timeout
 		random_play_finished.emit()
 	elif random < 0.9:
 		#print("sleep")
 		sleep()
 		await animation_finished
-		await get_tree().create_timer(randf_range(1.0, 2.0)).timeout
 		random_play_finished.emit()
 	else:
 		random_play()

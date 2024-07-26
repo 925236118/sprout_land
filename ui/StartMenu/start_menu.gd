@@ -2,7 +2,7 @@ extends Control
 
 @onready var emotes: Emotes = %Emotes
 
-const GAME = preload("res://scenes/game.tscn")
+const FARM = preload("res://scenes/farm.tscn")
 
 func _ready():
 	emotes.appear()
@@ -17,11 +17,12 @@ func random_animation():
 	else:
 		emotes.random_play()
 		await emotes.random_play_finished
+		if get_tree() != null:
+			await get_tree().create_timer(randf_range(1.0, 3.0)).timeout
 		
 	random_animation()
 
 func _on_new_game_pressed():
 	emotes.leave()
 	await emotes.animation_finished
-	emotes.queue_free()
-	get_tree().change_scene_to_packed(GAME)
+	get_tree().change_scene_to_packed(FARM)
