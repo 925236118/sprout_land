@@ -13,7 +13,8 @@ func random_animation():
 	var random = randf()
 	if random < 0.7:
 		#print("wait")
-		await get_tree().create_timer(3).timeout
+		if get_tree() != null:
+			await get_tree().create_timer(3).timeout
 	else:
 		emotes.random_play()
 		await emotes.random_play_finished
