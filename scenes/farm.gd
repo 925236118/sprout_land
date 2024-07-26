@@ -11,7 +11,5 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("setting"):
-		if game_setting_ui.is_show:
-			game_setting_ui.hide_setting()
-		else:
-			game_setting_ui.show_setting()
+		if not game_setting_ui.visible:
+			game_setting_ui.show_pause()

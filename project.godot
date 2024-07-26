@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalTool="*res://globals/global_tool.gd"
 GlobalPlants="*res://globals/global_plants.gd"
+SceneManager="*res://globals/scene_manager.gd"
 
 [editor_plugins]
 

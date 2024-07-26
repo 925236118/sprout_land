@@ -1,14 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb1uw4lgji8rf"]
+[gd_scene load_steps=8 format=3 uid="uid://cb1uw4lgji8rf"]
 
 [ext_resource type="Script" path="res://ui/GameSettingUI/game_setting_ui.gd" id="1_3vy1q"]
 [ext_resource type="Texture2D" uid="uid://d20fvrsp32tgu" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Setting menu.png" id="1_ack0l"]
 [ext_resource type="Texture2D" uid="uid://uvu1aj0ofcyu" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/UI Settings Buttons.png" id="2_2pdne"]
+[ext_resource type="Texture2D" uid="uid://p40s3564wgvi" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/UI Big Play Button.png" id="4_a38ym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds3sq"]
 atlas = ExtResource("2_2pdne")
 region = Rect2(10, 7, 60, 18)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rics"]
+atlas = ExtResource("4_a38ym")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnjro"]
+atlas = ExtResource("4_a38ym")
+region = Rect2(96, 0, 96, 32)
+
 [node name="GameSettingUI" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +82,7 @@ offset_bottom = 74.0
 grow_horizontal = 2
 texture = SubResource("AtlasTexture_ds3sq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingPanel"]
+[node name="Buttons" type="VBoxContainer" parent="SettingPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -85,3 +95,91 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Button" type="TextureButton" parent="SettingPanel/Buttons"]
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_2rics")
+texture_pressed = SubResource("AtlasTexture_xnjro")
+
+[node name="Label" type="Label" parent="SettingPanel/Buttons/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "按钮"
+
+[node name="ResumeButton" type="TextureButton" parent="SettingPanel/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_2rics")
+texture_pressed = SubResource("AtlasTexture_xnjro")
+
+[node name="Label" type="Label" parent="SettingPanel/Buttons/ResumeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "继续游戏"
+
+[node name="SaveButton" type="TextureButton" parent="SettingPanel/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_2rics")
+texture_pressed = SubResource("AtlasTexture_xnjro")
+
+[node name="Label" type="Label" parent="SettingPanel/Buttons/SaveButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "保存游戏"
+
+[node name="ExitButton" type="TextureButton" parent="SettingPanel/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("AtlasTexture_2rics")
+texture_pressed = SubResource("AtlasTexture_xnjro")
+
+[node name="Label" type="Label" parent="SettingPanel/Buttons/ExitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "回到标题"
+
+[connection signal="pressed" from="SettingPanel/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="SettingPanel/Buttons/ExitButton" to="." method="_on_exit_button_pressed"]

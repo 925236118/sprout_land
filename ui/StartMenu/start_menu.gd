@@ -2,8 +2,6 @@ extends Control
 
 @onready var emotes: Emotes = %Emotes
 
-const FARM = preload("res://scenes/farm.tscn")
-
 func _ready():
 	emotes.appear()
 	await emotes.animation_finished
@@ -26,4 +24,4 @@ func random_animation():
 func _on_new_game_pressed():
 	emotes.leave()
 	await emotes.animation_finished
-	get_tree().change_scene_to_packed(FARM)
+	SceneManager.change_scene("farm")
