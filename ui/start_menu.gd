@@ -1,17 +1,27 @@
 extends Control
-@onready var animation_player = $AnimationPlayer
+
+@onready var emotes: Emotes = %Emotes
 
 const GAME = preload("res://scenes/game.tscn")
 
 func _ready():
-	play_anim()
-	
-func play_anim():
-	# TODO 
-	#animation_player.play(animation_player.get_animation_list().pick_random())
-	
-	await animation_player.animation_finished
-	play_anim()
+	emotes.appear()
+	await emotes.animation_finished
+	random_animation()
+
+func random_animation():
+	var random = randf()
+	if random < 0.7:
+		#print("wait")
+		await get_tree().create_timer(3).timeout
+	else:
+		emotes.random_play()
+		await emotes.random_play_finished
+		
+	random_animation()
 
 func _on_new_game_pressed():
+	emotes.leave()
+	await emotes.animation_finished
+	emotes.queue_free()
 	get_tree().change_scene_to_packed(GAME)
