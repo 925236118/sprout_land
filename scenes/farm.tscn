@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0iob8ovtriuc"]
+[gd_scene load_steps=23 format=3 uid="uid://d0iob8ovtriuc"]
 
 [ext_resource type="Script" path="res://scenes/farm.gd" id="1_rcljg"]
 [ext_resource type="PackedScene" uid="uid://bmb1047uqu2cj" path="res://scenes/buildings/teemo_home.tscn" id="2_whlb7"]
@@ -8,11 +8,51 @@
 [ext_resource type="Texture2D" uid="uid://bh8v7765me6er" path="res://assets/textures/circle.png" id="6_krlk8"]
 [ext_resource type="PackedScene" uid="uid://bvatbre8e3he4" path="res://ui/GameUI/game_ui.tscn" id="7_3i2a6"]
 [ext_resource type="PackedScene" uid="uid://cb1uw4lgji8rf" path="res://ui/GameSettingUI/game_setting_ui.tscn" id="8_66q2f"]
+[ext_resource type="PackedScene" uid="uid://cqvod04anteqy" path="res://scenes/objects/chest.tscn" id="9_l1mqi"]
+[ext_resource type="PackedScene" uid="uid://d0skgxcxb73lu" path="res://ui/InventoryUI/inventory_ui.tscn" id="9_yxom5"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_component.gd" id="11_jdxbe"]
+[ext_resource type="Texture2D" uid="uid://tlk0tupisnqx" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Milk.png" id="12_7ufv0"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/item.gd" id="13_l510k"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_slot.gd" id="14_tmat8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77pfc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tfcut"]
 polygon = PackedVector2Array(-4, -14, -4, 0, 4, 0, 4, -14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb8yn"]
+atlas = ExtResource("12_7ufv0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="Resource" id="Resource_kpv56"]
+script = ExtResource("13_l510k")
+item_name = "milk"
+item_id = 0
+item_unit_price = 10
+item_texture = SubResource("AtlasTexture_rb8yn")
+
+[sub_resource type="Resource" id="Resource_p2h8a"]
+script = ExtResource("14_tmat8")
+item = SubResource("Resource_kpv56")
+slot_disable = false
+item_quantity = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbxb1"]
+atlas = ExtResource("12_7ufv0")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="Resource" id="Resource_med65"]
+script = ExtResource("13_l510k")
+item_name = "peach milk"
+item_id = 3
+item_unit_price = 20
+item_texture = SubResource("AtlasTexture_gbxb1")
+
+[sub_resource type="Resource" id="Resource_are1q"]
+script = ExtResource("14_tmat8")
+item = SubResource("Resource_med65")
+slot_disable = false
+item_quantity = 20
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rcljg")
@@ -61,3 +101,22 @@ texture = ExtResource("6_krlk8")
 
 [node name="GameSettingUI" parent="UILayer" instance=ExtResource("8_66q2f")]
 visible = false
+
+[node name="InventoryUI" parent="UILayer" instance=ExtResource("9_yxom5")]
+visible = false
+
+[node name="Chest" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
+position = Vector2(119, 108)
+inventory = NodePath("InventoryComponent")
+
+[node name="InventoryComponent" type="Node2D" parent="Chest"]
+script = ExtResource("11_jdxbe")
+inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_p2h8a"), SubResource("Resource_are1q"), null, null, null])
+
+[node name="Chest2" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
+position = Vector2(150, 108)
+inventory = NodePath("InventoryComponent")
+
+[node name="InventoryComponent" type="Node2D" parent="Chest2"]
+script = ExtResource("11_jdxbe")
+inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_p2h8a"), null, null, SubResource("Resource_are1q")])

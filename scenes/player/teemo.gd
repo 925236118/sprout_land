@@ -6,6 +6,8 @@ class_name Player
 @onready var animation_tree = $AnimationTree
 @onready var machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
+@onready var opration_check: RayCast2D = $OprationCheck
+
 var direction = Vector2.ZERO
 # 最后一帧面朝的方向
 var last_direction: Vector2 = Vector2.ZERO
