@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://hkm61jnlxti8"]
+[gd_scene load_steps=77 format=3 uid="uid://hkm61jnlxti8"]
 
 [ext_resource type="Texture2D" uid="uid://dvxlc270cug37" path="res://assets/Sprout Lands - Sprites - premium pack/Characters/Premium Charakter Spritesheet.png" id="1_dt4s6"]
 [ext_resource type="Script" path="res://scenes/player/teemo.gd" id="1_o4diu"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://scenes/player/player_idle.gd" id="4_smo4t"]
 [ext_resource type="Script" path="res://scenes/player/player_walk.gd" id="5_75rv2"]
 [ext_resource type="Script" path="res://scenes/player/player_use_tool.gd" id="6_747kk"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_component.gd" id="7_pf8iy"]
+[ext_resource type="Texture2D" uid="uid://l67x0qtuf5qj" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Egg items.png" id="8_n1yg5"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_slot.gd" id="8_pl228"]
+[ext_resource type="Script" path="res://scripts/components/InventoryComponent/item.gd" id="9_oi4d1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pna0a"]
 
@@ -2064,11 +2068,29 @@ states/Walk/position = Vector2(477, 75)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_7mhyi"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gk88d"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_qty32"), "Idle", "UseTool", SubResource("AnimationNodeStateMachineTransition_462ae"), "UseTool", "Idle", SubResource("AnimationNodeStateMachineTransition_syp8p"), "Walk", "UseTool", SubResource("AnimationNodeStateMachineTransition_djjhp")]
 graph_offset = Vector2(-16, 38)
 
-[node name="Teemo" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrnc3"]
+atlas = ExtResource("8_n1yg5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Resource" id="Resource_yt5p4"]
+script = ExtResource("9_oi4d1")
+item_name = "egg"
+item_id = 20
+item_unit_price = 5
+item_texture = SubResource("AtlasTexture_xrnc3")
+
+[sub_resource type="Resource" id="Resource_6kqhl"]
+script = ExtResource("8_pl228")
+item = SubResource("Resource_yt5p4")
+slot_disable = false
+item_quantity = 8
+
+[node name="Teemo" type="CharacterBody2D" node_paths=PackedStringArray("inventory")]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_o4diu")
+inventory = NodePath("InventoryComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_pna0a")
@@ -2118,3 +2140,7 @@ player = NodePath("../..")
 [node name="OprationCheck" type="RayCast2D" parent="."]
 enabled = false
 target_position = Vector2(0, 10)
+
+[node name="InventoryComponent" type="Node2D" parent="."]
+script = ExtResource("7_pf8iy")
+inventory_slot = Array[ExtResource("8_pl228")]([SubResource("Resource_6kqhl"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name Player
-
+@export var inventory: InventoryComponent = null
 @onready var animation_player = $AnimationPlayer
 
 @onready var animation_tree = $AnimationTree
@@ -13,7 +13,12 @@ var direction = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	EventBus.player = self
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("inventory"):
+		EventBus.show_inventory_ui.emit(null, false)
 
 func _physics_process(_delta: float) -> void:
 	if GlobalTool.is_using_tool:

@@ -1,5 +1,3 @@
-@tool
-
 class_name Chest extends CharacterBody2D
 
 @onready var animation_player = $AnimationPlayer

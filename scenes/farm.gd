@@ -20,9 +20,13 @@ func _ready() -> void:
 	
 	EventBus.show_inventory_ui.connect(show_inventory_ui)
 	
-func show_inventory_ui(inventory: InventoryComponent):
-	inventory_ui.inventory_slots = inventory.inventory_slot
-	inventory_ui.inventory = inventory
+func show_inventory_ui(inventory: InventoryComponent, show_inventory_ui: bool = true):
+	if inventory != null:
+		inventory_ui.inventory = inventory
+		inventory_ui.inventory_slots = inventory.inventory_slot
+		
+	inventory_ui.show_inventory_ui = show_inventory_ui
+	
 	if not inventory_ui.visible:
 		inventory_ui.show_pause()
 	

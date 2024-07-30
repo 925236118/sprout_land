@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkbdyid1i4otm"]
+
+[ext_resource type="Texture2D" uid="uid://cbo12hy3iow2x" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="1_h3kho"]
+[ext_resource type="Script" path="res://ui/InventoryUI/inventory_slot.gd" id="1_ssuta"]
+[ext_resource type="Texture2D" uid="uid://tlk0tupisnqx" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Milk.png" id="2_n6vbc"]
+[ext_resource type="FontFile" uid="uid://cx3ks20lah17g" path="res://assets/Sprout Lands - UI Pack - Premium pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_0tm6n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tarel"]
+atlas = ExtResource("1_h3kho")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk5f1"]
+atlas = ExtResource("2_n6vbc")
+region = Rect2(0, 16, 16, 16)
+
+[node name="InventorySlot" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ssuta")
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_tarel")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_sk5f1")
+
+[node name="ItemQuantity" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_0tm6n")
+theme_override_font_sizes/font_size = 12
+text = "32"
+horizontal_alignment = 1
+vertical_alignment = 1

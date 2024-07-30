@@ -1,35 +1,127 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0skgxcxb73lu"]
+[gd_scene load_steps=5 format=3 uid="uid://d0skgxcxb73lu"]
 
 [ext_resource type="Script" path="res://ui/InventoryUI/inventory_ui.gd" id="1_m4ovt"]
 [ext_resource type="Texture2D" uid="uid://d20fvrsp32tgu" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Setting menu.png" id="2_tca6p"]
+[ext_resource type="Texture2D" uid="uid://p40s3564wgvi" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/UI Big Play Button.png" id="3_g1ptm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmwvk"]
+atlas = ExtResource("3_g1ptm")
+region = Rect2(0, 0, 96, 32)
 
 [node name="InventoryUI" type="Control"]
 process_mode = 2
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m4ovt")
 
-[node name="SettingPanel" type="Control" parent="."]
+[node name="SettingMask" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -402.0
 offset_top = -210.0
-offset_right = 200.0
+offset_right = 402.0
 offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="PanelBackground" type="NinePatchRect" parent="SettingPanel"]
+[node name="PlayerPanel" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 420)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PlayerPanel"]
+layout_mode = 0
+offset_top = -30.0
+offset_right = 96.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_dmwvk")
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayerPanel/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "背包"
+
+[node name="PanelBackground" type="NinePatchRect" parent="HBoxContainer/PlayerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tca6p")
+region_rect = Rect2(139, 12, 106, 122)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="PlayerSlotContainer" type="GridContainer" parent="HBoxContainer/PlayerPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 30.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="OtherInventoryPanel" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 420)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/OtherInventoryPanel"]
+offset_top = -30.0
+offset_right = 96.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_dmwvk")
+
+[node name="Label" type="Label" parent="HBoxContainer/OtherInventoryPanel/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "库存"
+
+[node name="PanelBackground" type="NinePatchRect" parent="HBoxContainer/OtherInventoryPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,17 +141,15 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="SlotContainer" type="GridContainer" parent="SettingPanel"]
+[node name="OtherSlotContainer" type="GridContainer" parent="HBoxContainer/OtherInventoryPanel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -135.0
-offset_top = 60.0
-offset_right = 135.0
-offset_bottom = 120.0
+offset_top = 30.0
+offset_bottom = 90.0
 grow_horizontal = 2
-theme_override_constants/h_separation = 60
-theme_override_constants/v_separation = 60
-columns = 10
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5

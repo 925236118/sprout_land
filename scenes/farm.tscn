@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0iob8ovtriuc"]
+[gd_scene load_steps=31 format=3 uid="uid://d0iob8ovtriuc"]
 
 [ext_resource type="Script" path="res://scenes/farm.gd" id="1_rcljg"]
 [ext_resource type="PackedScene" uid="uid://bmb1047uqu2cj" path="res://scenes/buildings/teemo_home.tscn" id="2_whlb7"]
@@ -14,11 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://tlk0tupisnqx" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Milk.png" id="12_7ufv0"]
 [ext_resource type="Script" path="res://scripts/components/InventoryComponent/item.gd" id="13_l510k"]
 [ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_slot.gd" id="14_tmat8"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_77pfc"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tfcut"]
-polygon = PackedVector2Array(-4, -14, -4, 0, 4, 0, 4, -14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rb8yn"]
 atlas = ExtResource("12_7ufv0")
@@ -54,6 +49,51 @@ item = SubResource("Resource_med65")
 slot_disable = false
 item_quantity = 20
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cbq31"]
+load_path = "res://.godot/imported/Milk.png-933510c56b08e68b20f5fb1bee0537bf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jetul"]
+atlas = SubResource("CompressedTexture2D_cbq31")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="Resource" id="Resource_f3btp"]
+script = ExtResource("13_l510k")
+item_name = "milk"
+item_id = 0
+item_unit_price = 10
+item_texture = SubResource("AtlasTexture_jetul")
+
+[sub_resource type="Resource" id="Resource_qrivp"]
+script = ExtResource("14_tmat8")
+item = SubResource("Resource_f3btp")
+slot_disable = false
+item_quantity = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ad4am"]
+load_path = "res://.godot/imported/Milk.png-933510c56b08e68b20f5fb1bee0537bf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ifj5"]
+atlas = SubResource("CompressedTexture2D_ad4am")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="Resource" id="Resource_a6tlf"]
+script = ExtResource("13_l510k")
+item_name = "peach milk"
+item_id = 3
+item_unit_price = 20
+item_texture = SubResource("AtlasTexture_3ifj5")
+
+[sub_resource type="Resource" id="Resource_kx6ou"]
+script = ExtResource("14_tmat8")
+item = SubResource("Resource_a6tlf")
+slot_disable = false
+item_quantity = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77pfc"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tfcut"]
+polygon = PackedVector2Array(-4, -14, -4, 0, 4, 0, 4, -14)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rcljg")
 
@@ -69,6 +109,22 @@ position = Vector2(246, 135)
 y_sort_enabled = true
 
 [node name="PlantMap" parent="YSortMaps" instance=ExtResource("4_l43nv")]
+
+[node name="Chest" parent="YSortMaps" node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
+position = Vector2(119, 108)
+inventory = NodePath("InventoryComponent")
+
+[node name="InventoryComponent" type="Node2D" parent="YSortMaps/Chest"]
+script = ExtResource("11_jdxbe")
+inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_p2h8a"), SubResource("Resource_are1q"), null, null, null])
+
+[node name="Chest2" parent="YSortMaps" node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
+position = Vector2(150, 108)
+inventory = NodePath("InventoryComponent")
+
+[node name="InventoryComponent" type="Node2D" parent="YSortMaps/Chest2"]
+script = ExtResource("11_jdxbe")
+inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_qrivp"), null, null, SubResource("Resource_kx6ou")])
 
 [node name="Teemo" parent="YSortMaps" instance=ExtResource("5_bgpor")]
 material = SubResource("ShaderMaterial_77pfc")
@@ -104,19 +160,3 @@ visible = false
 
 [node name="InventoryUI" parent="UILayer" instance=ExtResource("9_yxom5")]
 visible = false
-
-[node name="Chest" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
-position = Vector2(119, 108)
-inventory = NodePath("InventoryComponent")
-
-[node name="InventoryComponent" type="Node2D" parent="Chest"]
-script = ExtResource("11_jdxbe")
-inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_p2h8a"), SubResource("Resource_are1q"), null, null, null])
-
-[node name="Chest2" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("9_l1mqi")]
-position = Vector2(150, 108)
-inventory = NodePath("InventoryComponent")
-
-[node name="InventoryComponent" type="Node2D" parent="Chest2"]
-script = ExtResource("11_jdxbe")
-inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_p2h8a"), null, null, SubResource("Resource_are1q")])

@@ -14,6 +14,7 @@ atlas = ExtResource("2_n6vbc")
 region = Rect2(0, 16, 16, 16)
 
 [node name="InventorySlot" type="Control"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
