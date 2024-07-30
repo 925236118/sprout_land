@@ -19,6 +19,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	set_drag_preview(generate_drag_preview(item_texture.texture))
+	item_texture.self_modulate = Color("#bababa")
 	return {
 		"from": curr_inventory,
 		"index": curr_index,
@@ -26,10 +27,14 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	}
 
 func generate_drag_preview(texture: Texture2D) -> Control:
+	var center_container = CenterContainer.new()
+	center_container.use_top_left = true
 	var texture_rect = TextureRect.new()
 	texture_rect.texture = texture
-	texture_rect.size = Vector2(32, 32)
-	return texture_rect
+	#texture_rect.size = Vector2(32, 32)
+	texture_rect.custom_minimum_size = Vector2(32, 32)
+	center_container.add_child(texture_rect)
+	return center_container
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var from_inventory := data.from as InventoryComponent
@@ -45,8 +50,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var from_data: Dictionary = from_inventory.remove_item(data.index)
 	var to_data: Dictionary = curr_inventory.remove_item(curr_index)
 	curr_inventory.add_item(from_data.item, from_data.quantity, curr_index)
-	
-	
+
 	set_texture(curr_inventory.get_slot(curr_index).item.item_texture)
 	set_quantity(curr_inventory.get_slot(curr_index).item_quantity)
 	
@@ -58,4 +62,5 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	else:
 		from_slot_ui.set_texture(null)
 		from_slot_ui.set_quantity(0)
-		
+	
+	from_slot_ui.item_texture.self_modulate = Color("#ffffff")

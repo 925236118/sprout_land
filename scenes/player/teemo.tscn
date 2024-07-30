@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://hkm61jnlxti8"]
+[gd_scene load_steps=87 format=3 uid="uid://hkm61jnlxti8"]
 
 [ext_resource type="Texture2D" uid="uid://dvxlc270cug37" path="res://assets/Sprout Lands - Sprites - premium pack/Characters/Premium Charakter Spritesheet.png" id="1_dt4s6"]
 [ext_resource type="Script" path="res://scenes/player/teemo.gd" id="1_o4diu"]
@@ -2085,6 +2085,56 @@ item = SubResource("Resource_yt5p4")
 slot_disable = false
 item_quantity = 8
 
+[sub_resource type="Resource" id="Resource_j6i64"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_drtfl"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_km2m6"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_0lv5s"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_bowae"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_tvsvy"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_jfpei"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_nldwp"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_kxd25"]
+script = ExtResource("8_pl228")
+slot_disable = true
+item_quantity = 0
+
+[sub_resource type="Resource" id="Resource_66tpa"]
+script = ExtResource("8_pl228")
+slot_disable = false
+item_quantity = 0
+
 [node name="Teemo" type="CharacterBody2D" node_paths=PackedStringArray("inventory")]
 y_sort_enabled = true
 collision_layer = 2
@@ -2143,4 +2193,4 @@ target_position = Vector2(0, 10)
 
 [node name="InventoryComponent" type="Node2D" parent="."]
 script = ExtResource("7_pf8iy")
-inventory_slot = Array[ExtResource("8_pl228")]([SubResource("Resource_6kqhl"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+inventory_slot = Array[ExtResource("8_pl228")]([SubResource("Resource_6kqhl"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_j6i64"), SubResource("Resource_drtfl"), SubResource("Resource_km2m6"), SubResource("Resource_0lv5s"), SubResource("Resource_bowae"), SubResource("Resource_tvsvy"), SubResource("Resource_jfpei"), SubResource("Resource_nldwp"), SubResource("Resource_kxd25"), SubResource("Resource_66tpa")])
