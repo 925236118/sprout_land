@@ -1,17 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkbdyid1i4otm"]
+[gd_scene load_steps=5 format=3 uid="uid://bkbdyid1i4otm"]
 
 [ext_resource type="Texture2D" uid="uid://cbo12hy3iow2x" path="res://assets/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="1_h3kho"]
 [ext_resource type="Script" path="res://ui/InventoryUI/inventory_slot.gd" id="1_ssuta"]
-[ext_resource type="Texture2D" uid="uid://tlk0tupisnqx" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Milk.png" id="2_n6vbc"]
 [ext_resource type="FontFile" uid="uid://cx3ks20lah17g" path="res://assets/Sprout Lands - UI Pack - Premium pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_0tm6n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tarel"]
 atlas = ExtResource("1_h3kho")
 region = Rect2(0, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sk5f1"]
-atlas = ExtResource("2_n6vbc")
-region = Rect2(0, 16, 16, 16)
 
 [node name="InventorySlot" type="Control"]
 custom_minimum_size = Vector2(56, 56)
@@ -53,7 +48,6 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_sk5f1")
 
 [node name="ItemQuantity" type="Label" parent="."]
 layout_mode = 1
@@ -70,6 +64,5 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_0tm6n")
 theme_override_font_sizes/font_size = 12
-text = "32"
 horizontal_alignment = 1
 vertical_alignment = 1
