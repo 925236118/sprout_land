@@ -129,7 +129,7 @@ inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_qrivp"), 
 
 [node name="Teemo" parent="YSortMaps" instance=ExtResource("5_bgpor")]
 material = SubResource("ShaderMaterial_77pfc")
-position = Vector2(459, 187)
+position = Vector2(353, 81)
 collision_mask = 13
 
 [node name="Camera2D" type="Camera2D" parent="YSortMaps/Teemo"]

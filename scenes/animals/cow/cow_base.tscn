@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://7g312t5mks35"]
+[gd_scene load_steps=34 format=3 uid="uid://7g312t5mks35"]
 
 [ext_resource type="Script" path="res://scenes/animals/cow/cow_base.gd" id="1_w3m5e"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_0i82w"]
@@ -11,9 +11,14 @@
 [ext_resource type="Script" path="res://scenes/animals/cow/is_sleeping_condition.gd" id="5_3st3h"]
 [ext_resource type="Script" path="res://scenes/animals/cow/sleep_action.gd" id="6_3wtoa"]
 [ext_resource type="Script" path="res://scenes/animals/cow/walk_action.gd" id="8_wibvt"]
+[ext_resource type="Script" path="res://scenes/animals/cow/is_chewing_condition.gd" id="8_x0j3q"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="9_pmjkr"]
 [ext_resource type="Script" path="res://scenes/animals/cow/eat_action.gd" id="9_yb6pe"]
+[ext_resource type="Script" path="res://scenes/animals/cow/need_sleep_condition.gd" id="10_tk4ch"]
+[ext_resource type="Script" path="res://scenes/animals/cow/chew_action.gd" id="12_fhasd"]
 [ext_resource type="Script" path="res://scenes/animals/cow/is_full_condition.gd" id="13_l88xw"]
+[ext_resource type="Script" path="res://scenes/animals/cow/is_sit_condition.gd" id="15_ty1d5"]
+[ext_resource type="Script" path="res://scenes/animals/cow/standup_action.gd" id="16_uciw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqhia"]
 size = Vector2(14.5, 11.75)
@@ -21,7 +26,6 @@ size = Vector2(14.5, 11.75)
 [sub_resource type="Animation" id="Animation_m2j2r"]
 resource_name = "Chewing"
 length = 0.8
-loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -820,20 +824,24 @@ region_enabled = true
 region_rect = Rect2(0, 0, 64, 32)
 
 [node name="ForwordCast" type="RayCast2D" parent="CowBody"]
+visible = false
 position = Vector2(8, -8)
 target_position = Vector2(13, 0)
 collision_mask = 13
 
 [node name="UpCast" type="RayCast2D" parent="CowBody"]
+visible = false
 position = Vector2(0, -12)
 target_position = Vector2(0, -4)
 collision_mask = 13
 
 [node name="DownCast" type="RayCast2D" parent="CowBody"]
+visible = false
 target_position = Vector2(0, 4)
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_jqhia")
 
@@ -842,13 +850,26 @@ libraries = {
 "": SubResource("AnimationLibrary_cva2l")
 }
 
-[node name="EatingCooldownTimer" type="Timer" parent="."]
-wait_time = 20.0
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="EatingCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 40.0
 one_shot = true
 
-[node name="IdleTimer" type="Timer" parent="."]
+[node name="IdleTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 2.0
+one_shot = true
+
+[node name="SleepTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="ChewTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 3.0
 one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
@@ -872,26 +893,44 @@ script = ExtResource("13_l88xw")
 [node name="EatSequence" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence"]
 script = ExtResource("3_ed2go")
 
-[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence"]
+[node name="NotJustEatingCondition" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence"]
 script = ExtResource("4_usb8v")
 
-[node name="IsJustEatingCondition" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/InverterDecorator"]
+[node name="IsJustEatingCondition" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/NotJustEatingCondition"]
 script = ExtResource("4_xixwf")
 
-[node name="EatAction" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence"]
+[node name="SelectorComposite" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence"]
+script = ExtResource("4_opkne")
+
+[node name="StandSequence" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/SelectorComposite"]
+script = ExtResource("3_ed2go")
+
+[node name="IsSitCondition" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/SelectorComposite/StandSequence"]
+script = ExtResource("15_ty1d5")
+
+[node name="StandupAction" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/SelectorComposite/StandSequence"]
+script = ExtResource("16_uciw2")
+
+[node name="EatAction" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/SelectorComposite"]
 script = ExtResource("9_yb6pe")
 
-[node name="IdleSelector" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("9_pmjkr")
+[node name="ChewSequence" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence"]
+script = ExtResource("3_ed2go")
 
-[node name="IdleAction" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector"]
-script = ExtResource("4_tberx")
+[node name="IsChewingCondition" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/ChewSequence"]
+script = ExtResource("8_x0j3q")
 
-[node name="WalkAction" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector"]
-script = ExtResource("8_wibvt")
+[node name="ChewAction" type="Node" parent="BeehaveTree/SelectorComposite/EatGrassSequence/EatSequence/ChewSequence"]
+script = ExtResource("12_fhasd")
 
 [node name="SleepSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("3_ed2go")
+
+[node name="IsFullCondition" type="Node" parent="BeehaveTree/SelectorComposite/SleepSequence"]
+script = ExtResource("13_l88xw")
+
+[node name="NeedSleepCondition" type="Node" parent="BeehaveTree/SelectorComposite/SleepSequence"]
+script = ExtResource("10_tk4ch")
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SleepSequence"]
 script = ExtResource("4_usb8v")
@@ -902,5 +941,28 @@ script = ExtResource("5_3st3h")
 [node name="SleepAction" type="Node" parent="BeehaveTree/SelectorComposite/SleepSequence"]
 script = ExtResource("6_3wtoa")
 
-[connection signal="timeout" from="EatingCooldownTimer" to="." method="_on_eating_cooldown_timer_timeout"]
-[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[node name="IdleSelector" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("9_pmjkr")
+
+[node name="IdleAction" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector"]
+script = ExtResource("4_tberx")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector"]
+script = ExtResource("4_opkne")
+
+[node name="StandSequence" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector/SelectorComposite"]
+script = ExtResource("3_ed2go")
+
+[node name="IsSitCondition" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector/SelectorComposite/StandSequence"]
+script = ExtResource("15_ty1d5")
+
+[node name="StandupAction" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector/SelectorComposite/StandSequence"]
+script = ExtResource("16_uciw2")
+
+[node name="WalkAction" type="Node" parent="BeehaveTree/SelectorComposite/IdleSelector/SelectorComposite"]
+script = ExtResource("8_wibvt")
+
+[connection signal="timeout" from="Timers/EatingCooldownTimer" to="." method="_on_eating_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="Timers/SleepTimer" to="." method="_on_sleep_timer_timeout"]
+[connection signal="timeout" from="Timers/ChewTimer" to="." method="_on_chew_timer_timeout"]
