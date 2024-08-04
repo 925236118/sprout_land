@@ -1,7 +1,7 @@
 extends Node
 
 const START_MENU = preload("res://ui/StartMenu/start_menu.tscn")
-const FARM = preload("res://scenes/farm.tscn")
+const FARM = preload("res://scenes/maps/farm.tscn")
 
 @onready var Scene = {
 	"start_menu": START_MENU,

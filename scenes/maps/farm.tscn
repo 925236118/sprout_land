@@ -1,15 +1,16 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0iob8ovtriuc"]
+[gd_scene load_steps=32 format=3 uid="uid://d0iob8ovtriuc"]
 
-[ext_resource type="Script" path="res://scenes/farm.gd" id="1_rcljg"]
+[ext_resource type="Script" path="res://scenes/maps/farm.gd" id="1_rcljg"]
 [ext_resource type="PackedScene" uid="uid://bmb1047uqu2cj" path="res://scenes/buildings/teemo_home.tscn" id="2_whlb7"]
 [ext_resource type="PackedScene" uid="uid://c4ngyj8l8oen3" path="res://scenes/buildings/ware_house.tscn" id="3_urldd"]
-[ext_resource type="PackedScene" uid="uid://dkpe6sldik3s1" path="res://scenes/plant_map.tscn" id="4_l43nv"]
+[ext_resource type="PackedScene" uid="uid://dkpe6sldik3s1" path="res://scenes/maps/plant_map.tscn" id="4_l43nv"]
 [ext_resource type="PackedScene" uid="uid://hkm61jnlxti8" path="res://scenes/player/teemo.tscn" id="5_bgpor"]
 [ext_resource type="Texture2D" uid="uid://bh8v7765me6er" path="res://assets/textures/circle.png" id="6_krlk8"]
 [ext_resource type="PackedScene" uid="uid://bvatbre8e3he4" path="res://ui/GameUI/game_ui.tscn" id="7_3i2a6"]
 [ext_resource type="PackedScene" uid="uid://cb1uw4lgji8rf" path="res://ui/GameSettingUI/game_setting_ui.tscn" id="8_66q2f"]
 [ext_resource type="PackedScene" uid="uid://cqvod04anteqy" path="res://scenes/objects/chest.tscn" id="9_l1mqi"]
 [ext_resource type="PackedScene" uid="uid://d0skgxcxb73lu" path="res://ui/InventoryUI/inventory_ui.tscn" id="9_yxom5"]
+[ext_resource type="PackedScene" uid="uid://d1npr5qos05sb" path="res://scenes/animals/cow/brown_cow.tscn" id="11_1wtx5"]
 [ext_resource type="Script" path="res://scripts/components/InventoryComponent/inventory_component.gd" id="11_jdxbe"]
 [ext_resource type="Texture2D" uid="uid://tlk0tupisnqx" path="res://assets/Sprout Lands - Sprites - premium pack/Objects/Items/Milk.png" id="12_7ufv0"]
 [ext_resource type="Script" path="res://scripts/components/InventoryComponent/item.gd" id="13_l510k"]
@@ -128,7 +129,7 @@ inventory_slot = Array[ExtResource("14_tmat8")]([SubResource("Resource_qrivp"), 
 
 [node name="Teemo" parent="YSortMaps" instance=ExtResource("5_bgpor")]
 material = SubResource("ShaderMaterial_77pfc")
-position = Vector2(96, 115)
+position = Vector2(459, 187)
 collision_mask = 13
 
 [node name="Camera2D" type="Camera2D" parent="YSortMaps/Teemo"]
@@ -140,6 +141,11 @@ drag_vertical_enabled = true
 [node name="LightOccluder2D" type="LightOccluder2D" parent="YSortMaps/Teemo"]
 visible = false
 occluder = SubResource("OccluderPolygon2D_tfcut")
+
+[node name="Animals" type="Node2D" parent="."]
+
+[node name="BrownCow" parent="Animals" instance=ExtResource("11_1wtx5")]
+position = Vector2(430, 80)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false

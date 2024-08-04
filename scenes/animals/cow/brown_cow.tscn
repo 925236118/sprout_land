@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1npr5qos05sb"]
+
+[ext_resource type="PackedScene" uid="uid://7g312t5mks35" path="res://scenes/animals/cow/cow_base.tscn" id="1_gx0m3"]
+[ext_resource type="Texture2D" uid="uid://dgbkykpculsqb" path="res://assets/Sprout Lands - Sprites - premium pack/Animals/Cow/Brown cow animations.png" id="2_o44ms"]
+
+[node name="BrownCow" instance=ExtResource("1_gx0m3")]
+
+[node name="Sprite2D" parent="CowBody" index="0"]
+texture = ExtResource("2_o44ms")

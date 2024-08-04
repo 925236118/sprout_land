@@ -24,4 +24,3 @@ func random_animation():
 func _on_new_game_pressed():
 	emotes.leave()
 	await emotes.animation_finished
-	SceneManager.change_scene("farm")

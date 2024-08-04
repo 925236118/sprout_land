@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sprout Lands"
-run/main_scene="res://scenes/farm.tscn"
+run/main_scene="res://scenes/maps/farm.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,10 +21,16 @@ GlobalTool="*res://globals/global_tool.gd"
 GlobalPlants="*res://globals/global_plants.gd"
 SceneManager="*res://globals/scene_manager.gd"
 EventBus="*res://globals/event_bus.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/com.timothyqiu.animation-resetter/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/com.timothyqiu.animation-resetter/plugin.cfg")
 
 [input]
 
